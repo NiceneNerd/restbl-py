@@ -1,0 +1,19 @@
+[package]
+name = "restbl"
+description = "Tears of the Kingdom RSTB/RESTBL parser and editing library"
+version = "0.1.0"
+homepage = "https://github.com/NiceneNerd/restbl-py/"
+repository = "https://github.com/NiceneNerd/restbl-py/"
+authors = ["Caleb Smith <c.smith@tuta.io>"]
+edition = "2021"
+license = "GPL-3.0-or-later"
+readme = "README.md"
+
+[lib]
+name = "restbl"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = "0.18.3"
+restbl = "0.1.0"
+zstd = "0.12.3"
