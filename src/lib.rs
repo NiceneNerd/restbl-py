@@ -1,5 +1,5 @@
 use ::restbl as rstb;
-use pyo3::prelude::*;
+use pyo3::{prelude::*, types::PyBytes};
 
 pyo3::create_exception!(pymsyt, RestblError, pyo3::exceptions::PyException);
 
@@ -30,9 +30,13 @@ impl ResourceSizeTable {
         Ok(Self(inner))
     }
 
-    #[pyo3(text_signature = "($self)")]
-    pub fn to_binary(&self) -> Vec<u8> {
-        self.0.to_binary()
+    #[pyo3(text_signature = "($self, compress: bool = False, /)")]
+    pub fn to_binary(&self, compress: Option<bool>) -> Py<PyAny> {
+        let mut data = self.0.to_binary();
+        if compress.unwrap_or_default() {
+            data = zstd::encode_all(data.as_slice(), 15).unwrap();
+        }
+        Python::with_gil(|py| PyBytes::new(py, &data).into())
     }
 
     #[pyo3(text_signature = "($self, file, /)")]
