@@ -34,7 +34,7 @@ impl ResourceSizeTable {
     pub fn to_binary(&self, compress: Option<bool>) -> Py<PyAny> {
         let mut data = self.0.to_binary();
         if compress.unwrap_or_default() {
-            data = zstd::encode_all(data.as_slice(), 15).unwrap();
+            data = zstd::encode_all(data.as_slice(), 16).unwrap();
         }
         Python::with_gil(|py| PyBytes::new(py, &data).into())
     }
