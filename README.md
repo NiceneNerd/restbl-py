@@ -1,7 +1,6 @@
 # restbl
 
-Library to manipulate the resource size table (RSTB/RESTBL) in *The Legend of
-Zelda: Tears of the Kingdom*
+Personal repo of restbl-py: Library to manipulate the resource size table (RSTB/RESTBL) in The Legend of Zelda: Tears of the Kingdom
 
 ## Example Usage
 
